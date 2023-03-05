@@ -1,0 +1,12 @@
+requests~=2.28
+django~=3.2
+djangorestframework~=3.14
+django-filter~=22.1
+pillow~=9.1
+drf-extra-fields~=3.4
+djoser~=2.1
+gunicorn~=20.1
+psycopg2-binary~=2.9
+django-colorfield~=0.7
+django-cors-headers~=3.14
+fpdf2~=2.6
