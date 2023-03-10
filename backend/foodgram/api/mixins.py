@@ -20,13 +20,13 @@ class AddDelViewMixin:
         if user.is_anonymous:
             return Response(status=HTTP_401_UNAUTHORIZED)
 
-        MANAGERS = {
+        managers = {
             'subscribe': user.subscription,
             'favorite': user.favorites,
             'shopping_cart': user.in_cart,
         }
 
-        manager = MANAGERS[manager]
+        manager = managers[manager]
 
         obj = get_object_or_404(self.queryset, id=obj_id)
         serializer = self.add_serializer(

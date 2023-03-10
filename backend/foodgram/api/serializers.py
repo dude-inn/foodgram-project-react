@@ -176,13 +176,12 @@ class RecipeSerializer(serializers.ModelSerializer):
 
     def get_ingredients(self, obj: object) -> Any:
         """Возвращает список ингридиентов для рецепта."""
-        ingredients = obj.ingredients.values(
+        return obj.ingredients.values(
             'id',
             'name',
             'measurement_unit',
             amount=F('recipe__amount')
         )
-        return ingredients
 
     def get_is_favorited(self, obj: object) -> bool:
         """
@@ -228,7 +227,9 @@ class RecipeSerializer(serializers.ModelSerializer):
         for item in ingredients:
             ingredient = get_object_or_404(Ingredient, id=item['id'])
             if ingredient in valid_ingredients:
-                raise serializers.ValidationError('Ингредиенты не должны повторяться')
+                raise serializers.ValidationError(
+                    'Ингредиенты не должны повторяться'
+                )
             valid_ingredients.append(ingredient)
             class_obj_validate(value=item['amount'])
             valid_amounts.append(item['amount'])

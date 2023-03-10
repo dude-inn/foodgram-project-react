@@ -35,7 +35,13 @@ def prepare_file(user, ingredients, filename='shopping_list.pdf'):
     pdf.add_font('arial', style='', fname=f'{font_dir}/arial.ttf', uni=True)
     pdf.add_page()
     pdf.set_font('arial', size=13)
-    pdf.cell(200, 10, txt=f'Список покупок пользователя: {user.first_name}', ln=1, align="C")
+    pdf.cell(
+        200,
+        10,
+        txt=f'Список покупок пользователя: {user.first_name}',
+        ln=1,
+        align="C"
+    )
     pdf.cell(200, 10, txt=f'{create_time}', ln=1, align='C')
     table_header = ['Ингредиент', 'Количество', 'Единицы измерения']
     line_height = pdf.font_size * 2.5
@@ -53,17 +59,31 @@ def prepare_file(user, ingredients, filename='shopping_list.pdf'):
             col_width, line_height, txt=item['ingredient'], border=1, ln=3,
             max_line_height=pdf.font_size)
         pdf.multi_cell(
-            col_width, line_height, txt=str(item['sum_amount']), border=1, ln=3,
-            max_line_height=pdf.font_size)
+            col_width,
+            line_height,
+            txt=str(item['sum_amount']),
+            border=1,
+            ln=3,
+            max_line_height=pdf.font_size
+        )
         pdf.multi_cell(
             col_width, line_height, txt=item['measure'], border=1, ln=3,
             max_line_height=pdf.font_size)
         pdf.ln(line_height)
 
-    pdf.cell(200, 10, txt='Сформировано в продуктовом помощнике Foodgram', ln=1, align="C")
+    pdf.cell(
+        200,
+        10,
+        txt='Сформировано в продуктовом помощнике Foodgram',
+        ln=1,
+        align="C"
+    )
     pdf.output(filename)
 
-    response = HttpResponse(bytes(pdf.output()), content_type='application/pdf; charset=utf-8')
+    response = HttpResponse(
+        bytes(pdf.output()),
+        content_type='application/pdf; charset=utf-8'
+    )
     response['Content-Disposition'] = f'attachment; filename={filename}'
 
     return response
