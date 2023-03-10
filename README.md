@@ -47,27 +47,6 @@ POSTGRES_USER - имя пользователя, владельца базы д�
 SECRET_KEY - секретный ключ для нужд Django
 ```
 
-Опциональные:
-
-```
-DEBUG - режим работы сервера бэкенда (по умолчанию - False)
-DJANGO_SUPERUSER_PASSWORD - пароль суперпользователей при создании без запроса ввода (по умолчанию - None)
-```
-
-Пример заполнения значениями по умолчанию:
-
-```
-ALLOWED_HOSTS=backend;<your_external_ip_or_Domain_name>
-CSRF_TO=http://backend;http://<your_external_ip_or_Domain_name>
-DB_ENGINE=django.db.backends.postgresql
-DB_HOST=db
-DB_NAME=postgres
-DB_PORT=5432
-POSTGRES_PASSWORD=postgres
-POSTGRES_USER=postgres
-SECRET_KEY=Here_shoud_be_something_long_and_complex
-```
-
 ### Документация доступна по ссылке:
 
 `http://localhost/api/docs/`
