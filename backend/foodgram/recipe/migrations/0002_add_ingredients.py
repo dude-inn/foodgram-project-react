@@ -2,9 +2,9 @@
 
 import json
 import os
-from django.db import migrations
-from django.conf import settings
 
+from django.conf import settings
+from django.db import migrations
 
 FILE_DIR = os.path.join(
     settings.BASE_DIR,

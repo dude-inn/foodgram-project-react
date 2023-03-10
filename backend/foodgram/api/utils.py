@@ -1,10 +1,9 @@
 import os
-from django.conf import settings
-from fpdf import FPDF
 from datetime import datetime as dt
 
+from django.conf import settings
 from django.http.response import HttpResponse
-
+from fpdf import FPDF
 from recipe.models import IngredientAmount
 
 
