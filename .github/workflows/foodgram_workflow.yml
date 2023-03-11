@@ -62,10 +62,10 @@ jobs:
 
       - name: migrate project static dirs
         run: |
-          sudo cp -TR ./data /app/data
-          sudo cp -TR ./docs /app/docs
-          sudo cp -TR ./infra /app/infra
-          sudo cp -TR ./frontend /app/frontend
+          sudo cp -TR ./data ./app/data
+          sudo cp -TR ./docs ./app/docs
+          sudo cp -TR ./infra ./app/infra
+          sudo cp -TR ./frontend ./app/frontend
 
       - name: executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
