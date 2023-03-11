@@ -31,7 +31,6 @@ INSTALLED_APPS = [
     'corsheaders'
 ]
 
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -43,11 +42,10 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGIN_REGEXES = [
-'http://localhost:3030',
+    'http://localhost:3030',
 ]
 
 ROOT_URLCONF = 'foodgram.urls'
