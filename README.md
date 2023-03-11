@@ -2,16 +2,18 @@
 ## Ссылка на сайт [http://dudeinn.sytes.net](http://dudeinn.sytes.net)
 
 
-#### На этом сервисе пользователи смогут публиковать рецепты, подписываться на публикации
+На этом сервисе пользователи смогут публиковать рецепты, подписываться на публикации
 других пользователей, добавлять понравившиеся рецепты в список «Избранное», а перед походом
 в магазин скачивать сводный список продуктов, необходимых для приготовления одного или
 нескольких выбранных блюд.
+
+#### для проверки админки юзернейм: mix38 пароль: 880607
 
 ### Деплой
 
 Автоматически выполняется деплой на сервер в облаке Яндекса.
 
-Статус: [![Deploy](https://github.com/dude-inn/foodgram-project-react/actions/workflows/foodgram-workflow.yml/badge.svg)](https://github.com/dude-inn/foodgram-project-react/actions/workflows/foodgram-workflow.yml)
+Статус: [![Foodgram project workflow](https://github.com/dude-inn/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)](https://github.com/dude-inn/foodgram-project-react/actions/workflows/foodgram_workflow.yml)
 
 ### Как запустить проект:
 
