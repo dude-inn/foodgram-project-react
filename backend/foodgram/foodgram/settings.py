@@ -143,7 +143,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost',
     'http://192.168.0.3',
     'http://84.252.129.194',
-    'dudeinn.sytes.net',
+    'http://dudeinn.sytes.net',
 ]
 
 DJOSER = {
