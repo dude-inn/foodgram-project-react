@@ -44,11 +44,11 @@ MIDDLEWARE = [
 ]
 
 
-#  CORS_ALLOW_ALL_ORIGINS = True
-#  CORS_ALLOW_CREDENTIALS = True
-#  CORS_ALLOWED_ORIGIN_REGEXES = [
-#    'http://localhost:3030',
-#  ]
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGIN_REGEXES = [
+'http://localhost:3030',
+]
 
 ROOT_URLCONF = 'foodgram.urls'
 
@@ -73,9 +73,9 @@ WSGI_APPLICATION = 'foodgram.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': os.getenv('DB_ENGINE', default='django.db.backends.postgresql'),
-        'NAME': os.getenv('DB_NAME', default='foodgram_db'),
+        'NAME': os.getenv('DB_NAME', default='db_name'),
         'USER': os.getenv('POSTGRES_USER', default='postgres'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='880607'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='postgres'),
         'HOST': os.getenv('DB_HOST', default='localhost'),
         'PORT': os.getenv('DB_PORT', default='5432')
     }
@@ -137,11 +137,14 @@ REST_FRAMEWORK = {
     ],
 }
 
-CSRF_TRUSTED_ORIGINS = os.getenv(
-    'CSRF_TO',
-    default=('http://localhost:8000;http://127.0.0.1:8000;'
-             'http://127.0.0.1;http://localhost'),
-).strip().split(sep=';')
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+    'http://127.0.0.1',
+    'http://localhost',
+    'http://192.168.0.3',
+    'http://84.252.129.194'
+]
 
 DJOSER = {
     'LOGIN_FIELD': 'email',
