@@ -10,7 +10,8 @@ DEBUG = False
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    '*'
+    '192.168.0.3',
+    '84.252.129.194'
 ]
 
 INSTALLED_APPS = [
@@ -43,11 +44,11 @@ MIDDLEWARE = [
 ]
 
 
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGIN_REGEXES = [
-    'http://localhost:3030',
-]
+#  CORS_ALLOW_ALL_ORIGINS = True
+#  CORS_ALLOW_CREDENTIALS = True
+#  CORS_ALLOWED_ORIGIN_REGEXES = [
+#    'http://localhost:3030',
+#  ]
 
 ROOT_URLCONF = 'foodgram.urls'
 
