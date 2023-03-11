@@ -11,8 +11,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '192.168.0.3',
-    '84.252.129.194',
-    'dudeinn.sytes.net',
+    '84.252.129.194'
 ]
 
 INSTALLED_APPS = [
@@ -143,7 +142,6 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost',
     'http://192.168.0.3',
     'http://84.252.129.194',
-    'http://dudeinn.sytes.net',
 ]
 
 DJOSER = {
