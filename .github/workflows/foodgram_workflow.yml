@@ -62,12 +62,11 @@ jobs:
 
       - name: migrate project static dirs
         run: |
-          mkdir ../app
-          cp -TR ./data ../app/data
-          cp -TR ./docs ../app/docs
-          cp -TR ./infra ../app/infra
-          cp -TR ./frontend ../app/frontend
-          tar -cvf deploy.tar ../app/
+          mkdir app
+          cp -TR ./data ./app/data
+          cp -TR ./docs ./app/docs
+          cp -TR ./infra ./app/infra
+          cp -TR ./frontend ./app/frontend
 
       - name: executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
@@ -77,7 +76,6 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
-            tar -xvf deploy.tar
             cd ~/app/infra
             rm -f .env
             touch .env
