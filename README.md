@@ -8,10 +8,6 @@
 
 #### для проверки админки юзернейм: mix38 пароль: 880607
 
-### Деплой
-
-Автоматически выполняется деплой на сервер в облаке Яндекса.
-
 Статус: [![Foodgram project workflow](https://github.com/dude-inn/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)](https://github.com/dude-inn/foodgram-project-react/actions/workflows/foodgram_workflow.yml)
 
 ### Как запустить проект:
@@ -22,20 +18,9 @@
 git clone https://github.com/dude-inn/foodgram-project-react.git
 cd foodgram-project-react/infra/
 ```
-
 Заполнить файл infra/.env (пример заполнения ниже).
-
-### Создание суперпользователя вручную
-
-Для создания суперпользователя вручную воспользуйтесь командой
-
-`docker-compose exec backend python manage.py createsuperuser`
-
 ### Требования и пример заполнения файла .env
-
 Файл .env может содержать следующие переменные:
-Обязательные:
-
 ```
 DB_ENGINE - драйвер СУБД для Django
 DB_HOST - имя хоста (docker-контейнера)
@@ -44,11 +29,39 @@ DB_PORT - порт для подключения к базе данных
 POSTGRES_PASSWORD - пароль пользователя из предыдущего пункта
 POSTGRES_USER - имя пользователя, владельца базы данных или администратора СУБД
 SECRET_KEY - секретный ключ для нужд Django
+DEBUG - значение Debug (True/False) для настройки Django
 ```
+
+Из папки infra выполните:
+```
+docker-compose up --build
+```
+Узнайте id существующих контейнеров
+```
+docker container ls
+```
+Скопируйте id web-контейнера и войдите в него
+```
+docker exec -it <CONTAINER ID> sh
+```
+Сделайте миграцию БД и сбор статики
+```
+python manage.py migrate
+python manage.py collectstatic
+```
+
+Импорт данных выполняется при миграции БД (реализован импорт для ингредиентов из файла ingredients.json)
+Файлы для импорты хранятся в папке app/data/
+
+### Создание суперпользователя вручную
+
+Для создания суперпользователя вручную воспользуйтесь командой
+
+`docker-compose exec backend python manage.py createsuperuser`
 
 ### Документация доступна по ссылке:
 
-`http://localhost/api/docs/`
+`http://84.252.129.194/docs/redoc`
 
 ### Требования:
 

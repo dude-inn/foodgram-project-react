@@ -15,7 +15,7 @@ FILE_DIR = os.path.join(
 def add_ingredients(apps, schema_editor):
     Ingredient = apps.get_model('recipe', 'Ingredient')
     with open(
-        os.path.join(FILE_DIR, 'ingredients.json'),
+        '../data/ingredients.json',
         'r',
         encoding='utf-8'
     ) as json_file:
@@ -30,7 +30,7 @@ def add_ingredients(apps, schema_editor):
 def remove_ingredients(apps, schema_editor):
     Ingredient = apps.get_model('recipe', 'Ingredient')
     with open(
-        os.path.join(FILE_DIR, 'ingredients.json'),
+        '../data/ingredients.json',
         'r',
         encoding='utf-8'
     ) as json_file:

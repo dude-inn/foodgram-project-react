@@ -1,18 +1,17 @@
 from re import match
 from typing import Any
 
-from django.contrib.auth import get_user_model
-from django.core.paginator import Paginator
+from django.conf import settings
 from django.db.models import F
 from django.shortcuts import get_object_or_404
 from drf_extra_fields.fields import Base64ImageField
-from recipe.models import Ingredient, Recipe, Tag
 from rest_framework import serializers
 
+from recipe.models import Ingredient, Recipe, Tag
+
+from ..recipe.models import User
 from .utils import recipe_amount_ingredients_set
 from .validators import class_obj_validate, hex_color_validate
-
-User = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -63,12 +62,11 @@ class UserFollowsSerializer(UserSerializer):
         return obj.recipes.count()
 
     def paginated_recipes(self, obj):
-        paginator = Paginator(
-            obj.recipes.all(),
-            self.context.get('request').query_params.get('recipes_limit', 3)
-        )
-        recipes = paginator.page(1)
-        serializer = RecipeSmallSerializer(recipes, many=True)
+        limit = self.context.get('request').query_params.get('recipes_limit')
+        recipes = obj.recipes.all()
+        if limit:
+            recipes = recipes[:int(limit)]
+        serializer = RecipeShortSerializer(recipes, many=True)
         return serializer.data
 
     class Meta:
@@ -103,7 +101,8 @@ class CreateUserSerializer(UserSerializer):
 
     def validate_username(self, username: str):
         """Валидация введённого username."""
-        if len(username) < 3:
+        if (settings.USERNAME_VALIDATION_LENGTH_MIN >
+                len(username) > settings.USERNAME_VALIDATION_LENGTH_MAX):
             raise serializers.ValidationError(
                 'Длина username допустима от 3 до 150'
             )
@@ -131,8 +130,8 @@ class IngredientSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Ingredient
-        fields = '__all__'
-        read_only_fields = ('__all__',)
+        fields = ('id', 'name', 'measurement_unit')
+        read_only_fields = ('id', 'name', 'measurement_unit')
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -150,7 +149,7 @@ class TagSerializer(serializers.ModelSerializer):
         read_only_fields = ('__all__',)
 
 
-class RecipeSmallSerializer(serializers.ModelSerializer):
+class RecipeShortSerializer(serializers.ModelSerializer):
     """Сериализатор для модели Recipe с сокращённым списком полей."""
 
     class Meta:
@@ -206,7 +205,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         name = str(data['name']).strip()
         tags = self.initial_data.get('tags')
         ingredients = self.initial_data.get('ingredients')
-        values_as_list = {'tags': tags, 'ingradients': ingredients}
+        values_as_list = {'tags': tags, 'ingredients': ingredients}
 
         for key, value in values_as_list.items():
             if not isinstance(value, list):

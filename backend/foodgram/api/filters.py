@@ -1,6 +1,7 @@
 from django_filters.rest_framework import (AllValuesMultipleFilter,
                                            BooleanFilter, CharFilter,
                                            FilterSet, NumberFilter)
+
 from recipe.models import Ingredient, Recipe
 
 
@@ -37,7 +38,20 @@ class RecipeFilter(FilterSet):
     )
     tags = AllValuesMultipleFilter(
         field_name='tags__slug',
+        to_field_name='slug',
     )
+
+    def get_is_favorited(self, queryset, name, value):
+        """Функция фильтра по наличию в избранном у текущего пользователя"""
+        if value:
+            return Recipe.objects.filter(favorite=self.request.user)
+        return Recipe.objects.all()
+
+    def get_is_in_shopping_cart(self, queryset, name, value):
+        """Функция фильтра по наличию в корзине у текущего пользователя"""
+        if value:
+            return Recipe.objects.filter(shopping_cart=self.request.user)
+        return Recipe.objects.all()
 
     class Meta:
         model = Recipe
@@ -47,17 +61,3 @@ class RecipeFilter(FilterSet):
             'author',
             'tags'
         )
-
-    def get_is_favorited(self, queryset, name, value):
-        """Функция фильтра по наличию в избранном у текущего пользователя"""
-        user = self.request.user
-        if value:
-            return Recipe.objects.filter(favorite=user)
-        return Recipe.objects.all()
-
-    def get_is_in_shopping_cart(self, queryset, name, value):
-        """Функция фильтра по наличию в корзине у текущего пользователя"""
-        user = self.request.user
-        if value:
-            return Recipe.objects.filter(shopping_cart=user)
-        return Recipe.objects.all()

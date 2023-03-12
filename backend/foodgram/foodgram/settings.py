@@ -5,14 +5,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = False
+DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '192.168.0.3',
-    '84.252.129.194'
-]
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -42,7 +37,11 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
+"""
+Настройки django-cors-headers.
+Необходимы для взаимодействия бэкенда и фронтенда на разных портах
+"""
+CORS_ALLOW_ALL_ORIGINS = True  # Django cors полностью открыт
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGIN_REGEXES = [
     'http://localhost:3030',
@@ -135,6 +134,8 @@ REST_FRAMEWORK = {
     ],
 }
 
+#  Список доверенных источников для небезопасных запросов,
+#  защита от междоменных и междподдоменных атак
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
     'http://127.0.0.1:8000',
@@ -148,10 +149,10 @@ DJOSER = {
     'LOGIN_FIELD': 'email',
     'HIDE_USERS': False,
     'PERMISSIONS': {
-        'recipe': ('api.permissions.AuthorAdminOrReadOnly,',),
+        'recipe': ('api.permissions.AuthorAdminOrReadOnly',),
         'recipe_list': ('api.permissions.AuthorAdminOrReadOnly',),
-        'user': ('api.permissions.AdminOwnerOrReadOnly',),
-        'user_list': ('api.permissions.AdminOwnerOrReadOnly',),
+        'user': ('api.permissions.AuthorAdminOrReadOnly',),
+        'user_list': ('api.permissions.AuthorAdminOrReadOnly',),
     },
     'SERIALIZERS': {
         'user': 'api.serializers.UserSerializer',
@@ -160,3 +161,6 @@ DJOSER = {
         'user_create': 'api.serializers.CreateUserSerializer',
     },
 }
+
+USERNAME_VALIDATION_LENGTH_MIN = 3
+USERNAME_VALIDATION_LENGTH_MAX = 150
