@@ -1,5 +1,4 @@
 from datetime import datetime as dt
-
 from django.http.response import HttpResponse
 from fpdf import FPDF
 
