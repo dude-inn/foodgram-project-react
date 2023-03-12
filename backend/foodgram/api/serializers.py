@@ -5,9 +5,8 @@ from django.conf import settings
 from django.db.models import F
 from django.shortcuts import get_object_or_404
 from drf_extra_fields.fields import Base64ImageField
-from rest_framework import serializers
-
 from recipe.models import Ingredient, Recipe, Tag
+from rest_framework import serializers
 
 from ..recipe.models import User
 from .utils import recipe_amount_ingredients_set
@@ -101,8 +100,8 @@ class CreateUserSerializer(UserSerializer):
 
     def validate_username(self, username: str):
         """Валидация введённого username."""
-        if (settings.USERNAME_VALIDATION_LENGTH_MIN >
-                len(username) > settings.USERNAME_VALIDATION_LENGTH_MAX):
+        if (settings.USERNAME_VALIDATION_LENGTH_MIN
+                > len(username) > settings.USERNAME_VALIDATION_LENGTH_MAX):
             raise serializers.ValidationError(
                 'Длина username допустима от 3 до 150'
             )

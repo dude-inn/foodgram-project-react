@@ -40,7 +40,7 @@ docker-compose up --build
 ```
 docker container ls
 ```
-Скопируйте id web-контейнера и войдите в него
+Скопируйте id backend-контейнера и войдите в него
 ```
 docker exec -it <CONTAINER ID> sh
 ```
@@ -55,9 +55,9 @@ python manage.py collectstatic
 
 ### Создание суперпользователя вручную
 
-Для создания суперпользователя вручную воспользуйтесь командой
+Для создания суперпользователя вручную воспользуйтесь командой bp backend-контейнера
 
-`docker-compose exec backend python manage.py createsuperuser`
+`python manage.py createsuperuser`
 
 ### Документация доступна по ссылке:
 
