@@ -6,11 +6,6 @@ import os
 from django.conf import settings
 from django.db import migrations
 
-FILE_DIR = os.path.join(
-    settings.BASE_DIR,
-    'import_data'
-)
-
 
 def add_ingredients(apps, schema_editor):
     Ingredient = apps.get_model('recipe', 'Ingredient')

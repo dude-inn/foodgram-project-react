@@ -1,12 +1,12 @@
 from django.db.models import F, Sum
 from djoser.views import UserViewSet as DjoserUserViewSet
-from recipe.models import Ingredient, IngredientAmount, Recipe, Tag
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_401_UNAUTHORIZED
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 
-from ..recipe.models import User
+from recipe.models import Ingredient, IngredientAmount, Recipe, Tag, User
+
 from .filters import IngredientFilter, RecipeFilter
 from .mixins import AddDelViewMixin
 from .paginators import PageLimitPagination
