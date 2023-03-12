@@ -3,6 +3,10 @@ version: '3.8'
 services:
   db:
     image: postgres:13.0-alpine
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
       - foodgram_postgres_data:/var/lib/postgresql/data/
     env_file:

@@ -1,5 +1,6 @@
 from datetime import datetime as dt
 
+from django.conf import settings
 from django.http.response import HttpResponse
 from fpdf import FPDF
 from recipe.models import IngredientAmount
@@ -26,7 +27,12 @@ def prepare_file(user, ingredients, filename='shopping_list.pdf'):
     filename = 'shopping_list.pdf'
     create_time = dt.now().strftime('%d.%m.%Y %H:%M')
     pdf = FPDF()
-    pdf.add_font('arial', style='', fname='../data/arial.ttf', uni=True)
+    pdf.add_font(
+        'arial',
+        style='',
+        fname=f'{settings.IMPORT_DATA_FILES_DIR}/arial.ttf',
+        uni=True
+    )
     pdf.add_page()
     pdf.set_font('arial', size=13)
     pdf.cell(
