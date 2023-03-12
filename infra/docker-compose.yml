@@ -16,8 +16,9 @@ services:
     image: dudeinn/foodgram_backend:v1.0
     volumes:
       - foodgram_static_volume:/app/static/
-      - foodgra_media_volume:/app/media/
+      - foodgram_media_volume:/app/media/
       - foodgram_redoc:/app/api/docs/
+      - ../data/:/app/data/
     depends_on:
       - db
     env_file:
@@ -40,12 +41,12 @@ services:
       - ../frontend/build:/usr/share/nginx/html/
       - foodgram_redoc:/usr/share/nginx/html/api/docs/
       - foodgram_static_volume:/var/html/static/
-      - foodgra_media_volume:/var/html/media/
+      - foodgram_media_volume:/var/html/media/
     depends_on:
       - frontend
 
 volumes:
   foodgram_postgres_data:
   foodgram_static_volume:
-  foodgra_media_volume:
+  foodgram_media_volume:
   foodgram_redoc:

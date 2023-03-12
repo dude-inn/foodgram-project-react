@@ -165,6 +165,6 @@ DJOSER = {
 USERNAME_VALIDATION_LENGTH_MIN = 3
 USERNAME_VALIDATION_LENGTH_MAX = 150
 IMPORT_DATA_FILES_DIR = os.path.join(
-    BASE_DIR.parent.parent,
+    BASE_DIR.parent,
     'data'
 )
