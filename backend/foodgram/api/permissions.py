@@ -3,18 +3,22 @@ from rest_framework.permissions import (BasePermission,
 
 
 class AuthorAdminOrReadOnly(IsAuthenticatedOrReadOnly):
-    """Автору и админу разрешено всё, остальным только чтение."""
+    """
+    Автору и админу разрешено всё, остальным только чтение.
+    Если не автор, то владелец учетки
+    """
 
     def has_object_permission(self, request, view, obj):
+        if request.method in ('GET',):
+            return True
+        if request.user == obj.author:
+            return request.user.is_authenticated
         return (
-            request.method in ('GET',)
-            or (
                 request.user.is_authenticated
                 and (
                     request.user.is_superuser
-                    or request.user == obj.author
+                    or request.user == obj
                 )
-            )
         )
 
 
@@ -23,25 +27,9 @@ class AdminOrReadOnly(BasePermission):
 
     def has_permission(self, request, view):
         return (
-            request.method in ('GET',)
-            or (
-                request.user.is_authenticated
-                and request.user.is_superuser
-            )
-        )
-
-
-class AdminOwnerOrReadOnly(IsAuthenticatedOrReadOnly):
-    """Владельцу учётки и админу можно всё, остальным только чтение."""
-
-    def has_object_permission(self, request, view, obj):
-        return (
-            request.method in ('GET',)
-            or (
-                request.user.is_authenticated
-                and (
-                    request.user.is_superuser
-                    or request.user == obj
+                request.method in ('GET',)
+                or (
+                    request.user.is_authenticated
+                    and request.user.is_superuser
                 )
-            )
         )

@@ -35,9 +35,9 @@ class RecipeFilter(FilterSet):
         field_name='author__id',
         lookup_expr='exact'
     )
+    #  по фильтрам тегов чето я не понял вроде все работает норм
     tags = AllValuesMultipleFilter(
         field_name='tags__slug',
-        null_value=True,
     )
 
     def get_is_favorited(self, queryset, name, value):
