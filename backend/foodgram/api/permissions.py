@@ -3,7 +3,7 @@ from rest_framework.permissions import (BasePermission,
 
 
 class AuthorAdminOrReadOnly(IsAuthenticatedOrReadOnly):
-    """Автору и администраторам разрешено всё, остальным только чтение."""
+    """Автору и админу разрешено всё, остальным только чтение."""
 
     def has_object_permission(self, request, view, obj):
         return (

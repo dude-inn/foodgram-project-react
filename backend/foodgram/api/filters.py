@@ -37,6 +37,7 @@ class RecipeFilter(FilterSet):
     )
     tags = AllValuesMultipleFilter(
         field_name='tags__slug',
+        to_field='name',
     )
 
     def get_is_favorited(self, queryset, name, value):
