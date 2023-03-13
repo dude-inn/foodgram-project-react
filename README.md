@@ -61,7 +61,7 @@ python manage.py collectstatic
 
 ### Документация доступна по ссылке:
 
-`http://84.252.129.194/docs/redoc`
+`http://84.252.129.194/api/docs/redoc.html`
 
 ### Требования:
 
