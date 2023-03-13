@@ -151,8 +151,8 @@ DJOSER = {
     'PERMISSIONS': {
         'recipe': ('api.permissions.AuthorAdminOrReadOnly',),
         'recipe_list': ('api.permissions.AuthorAdminOrReadOnly',),
-        'user': ('api.permissions.AuthorAdminOrReadOnly',),
-        'user_list': ('api.permissions.AuthorAdminOrReadOnly',),
+        'user': ('api.permissions.AdminOwnerOrReadOnly',),
+        'user_list': ('api.permissions.AdminOwnerOrReadOnly',),
     },
     'SERIALIZERS': {
         'user': 'api.serializers.UserSerializer',
