@@ -42,6 +42,6 @@ class AdminOwnerOrReadOnly(IsAuthenticatedOrReadOnly):
                 and (
                     request.user.is_superuser
                     or request.user == obj
-                    )
+                )
             )
         )
