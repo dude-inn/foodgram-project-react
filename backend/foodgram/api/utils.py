@@ -42,7 +42,7 @@ def prepare_file(user, ingredients, filename='shopping_list.pdf'):
         ln=1,
         align="C"
     )
-    pdf.cell(200, 10, txt=f'{create_time}', ln=1, align='C')
+    pdf.cell(200, 10, txt='./data/arial.ttf', ln=1, align='C')
     table_header = ['Ингредиент', 'Количество', 'Единицы измерения']
     line_height = pdf.font_size * 2.5
     col_width = pdf.epw / 3

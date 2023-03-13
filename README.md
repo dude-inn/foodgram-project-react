@@ -34,7 +34,7 @@ DEBUG - значение Debug (True/False) для настройки Django
 
 Из папки infra выполните:
 ```
-docker-compose up --build
+docker-compose up -d --build
 ```
 Узнайте id существующих контейнеров
 ```
