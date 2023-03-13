@@ -17,7 +17,6 @@ services:
     volumes:
       - foodgram_static_volume:/app/static/
       - foodgram_media_volume:/app/media/
-      - foodgram_redoc:/app/api/docs/
       - ../data/:/app/data/
     depends_on:
       - db
