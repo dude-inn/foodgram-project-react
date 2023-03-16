@@ -6,7 +6,6 @@
 в магазин скачивать сводный список продуктов, необходимых для приготовления одного или
 нескольких выбранных блюд.
 
-#### для проверки админки юзернейм: mix38 пароль: 880607
 
 Статус: [![Foodgram project workflow](https://github.com/dude-inn/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)](https://github.com/dude-inn/foodgram-project-react/actions/workflows/foodgram_workflow.yml)
 
